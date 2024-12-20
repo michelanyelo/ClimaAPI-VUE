@@ -1,11 +1,13 @@
 <script setup>
-
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
+import AlertaComp from './AlertaComp.vue';
 
 const busqueda = reactive({
     ciudad: '',
     pais: '',
 })
+
+const error = ref('')
 
 const paises = [
     { codigo: 'US', nombre: 'Estados Unidos' },
@@ -17,10 +19,20 @@ const paises = [
     { codigo: 'PE', nombre: 'Perú' },
     { codigo: 'CL', nombre: 'Chile' }
 ]
+
+const buscarClima = () => {
+    if (Object.values(busqueda).includes('')) {
+        error.value = 'Por favor, ingrese todos los campos'
+        return
+    }
+}
 </script>
 
 <template>
-    <form class="formulario">
+    <form class="formulario" @submit.prevent="buscarClima">
+
+        <AlertaComp v-if="error">{{ error }}</AlertaComp>
+
         <div class="campo">
             <label for="ciudad">Ciudad</label>
             <input type="text" id="ciudad" placeholder="Ciudad" v-model="busqueda.ciudad">
