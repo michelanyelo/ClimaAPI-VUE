@@ -13,6 +13,9 @@ export default function useClima() {
             console.log(lat, lon);
 
             // Obtener el clima con axios
+            const urlClima = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`
+            const { data: clima } = await axios.get(urlClima);
+            console.log(clima);
 
         } catch (error) {
             console.log(error);
