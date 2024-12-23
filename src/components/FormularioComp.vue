@@ -25,6 +25,8 @@ const buscarClima = () => {
         error.value = 'Por favor, ingrese todos los campos'
         return
     }
+
+    error.value = ''
 }
 </script>
 
