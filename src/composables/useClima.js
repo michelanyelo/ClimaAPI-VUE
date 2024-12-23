@@ -4,8 +4,13 @@ import { ref, computed } from "vue";
 export default function useClima() {
 
     const clima = ref({});
+    const cargando = ref(false);
 
     const obtenerClima = async ({ ciudad, pais }) => {
+        // Spinner
+        cargando.value = true;
+        clima.value = {};
+
         // Importar el api
         const key = import.meta.env.VITE_API_KEY;
 
@@ -22,6 +27,9 @@ export default function useClima() {
 
         } catch (error) {
             console.log(error);
+        } finally {
+            // Spinner
+            cargando.value = false;
         }
     }
 
@@ -35,6 +43,7 @@ export default function useClima() {
         obtenerClima,
         clima,
         mostrarClima,
-        formatearTemperatura
+        formatearTemperatura,
+        cargando
     }
 }
