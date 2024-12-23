@@ -11,7 +11,7 @@ const { obtenerClima, clima, mostrarClima } = useClima();
 
   <div class="contenedor buscador-clima">
     <FormularioComp @obtener-clima="obtenerClima"/>
-    <ClimaComp v-if="mostrarClima"/>
+    <ClimaComp v-if="mostrarClima" :clima="clima"/>
   </div>
 
 </template>

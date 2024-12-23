@@ -29,9 +29,12 @@ export default function useClima() {
         return clima.value.main ? true : false;
     });
 
+    const formatearTemperatura = temp => parseInt(temp - 273.15);
+
     return {
         obtenerClima,
         clima,
-        mostrarClima
+        mostrarClima,
+        formatearTemperatura
     }
 }
